@@ -13,6 +13,9 @@
    double wt1,wt2;
 #endif
 
+// Variables for storing time
+  double wstart,wend; 
+
 //inizializate the matrix
 void initializeMatrix(float **mat, int _n) {  
   for (int i = 0; i < _n; i++) {
@@ -49,9 +52,6 @@ int checkSym(float **mat, int _n) {
 
 //calculate the traspose of the matrix 
 float **matTranspose(float **mat, int _n) {
-
-  // Variables for storing time
-  double wstart,wend; 
    
   //create a temporary matrix 
   float **temp = (float **)malloc(_n * sizeof(float *)); 
@@ -102,9 +102,6 @@ int  checkSymImp(float **mat, int _n) {
 #pragma GCC optimize ("O2")
 float **matTransposeImp(float **mat, int _n) {
 
-  // Variables for storing time
-  double wstart,wend;
-
   // Start time
   wstart = omp_get_wtime(); 
    
@@ -148,8 +145,7 @@ int  checkSymOMP(float **mat, int _n) {
                 is_symmetric = 0;
             }
         }
-    }
-    
+    } 
     #endif
 
   return is_symmetric; 		
@@ -161,8 +157,7 @@ float **matTransposeOMP(float **mat, int _n) {
   #ifdef _OPENMP
     wt1 = omp_get_wtime();
   #endif 
-
-  
+   
   // Allocate memory for the transposed matrix
   float **temp = (float **)malloc(_n * sizeof(float *)); 
   for (int i = 0; i < _n; i++) {
@@ -229,19 +224,18 @@ void checktraspose(float **SEQ, float **B, int _n) {
   
 int main(int argc, char** argv){
   
-  srand(time(NULL)); 
+/*Initialize the random number generator with the current time to 
+  have different random sequences on each program execution */  
+srand(time(NULL)); 
   
-  int n = 256; 
+  int n; 
   float **TSEQ, **TIMP, **TOMP; 
-  
-  // Variables for storing time
-  double wstart,wend;
   	
-  /* Input and check for matrix dimension
+  Input and check for matrix dimension
   do {
   printf("insert number: ");
   scanf("%d", &n);
-  }while (checksquare(n) == 0);*/
+  }while (checksquare(n) == 0);
   
    // Allocate memory for matrix M and check for allocation success
   float **M = (float **)malloc(n * sizeof(float *)); 
@@ -277,7 +271,7 @@ printf("\n_______________________________sequential____________________________\
   // End time
   wend = omp_get_wtime();
       
-  //printf("Execution times of the checksym routine: %12.4g seconds\n", wend - wstart); 
+  printf("Execution times of the checksym routine: %12.4g seconds\n", wend - wstart); 
   
   TSEQ = matTranspose(M, n);
  
@@ -305,7 +299,7 @@ printf("\n___________________implicit parallelization (SIMD)___________________\
   // End time
   wend = omp_get_wtime(); 
     
-  //printf("Execution times of the checksym routine: %12.4g seconds\n", wend - wstart);
+  printf("Execution times of the checksym routine: %12.4g seconds\n", wend - wstart);
   
   TIMP = matTransposeImp(M, n);
   
@@ -339,9 +333,9 @@ printf("\n___________________explicit parallelizarion (OPENMP)__________________
     wt2 = omp_get_wtime();
     #endif
     
-   /* #ifdef _OPENMP
+    #ifdef _OPENMP
     printf("Execution times of the checksym routine: %f seconds\n", wt2 - wt1);
-    #endif */
+    #endif 
   
     TOMP = matTransposeOMP(M, n);  
     
