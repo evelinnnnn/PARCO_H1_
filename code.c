@@ -228,14 +228,14 @@ int main(int argc, char** argv){
   have different random sequences on each program execution */  
 srand(time(NULL)); 
   
-  int n; 
+  int n = atoi(argv[1]); 
   float **TSEQ, **TIMP, **TOMP; 
   	
-  Input and check for matrix dimension
+  /*Input and check for matrix dimension
   do {
   printf("insert number: ");
   scanf("%d", &n);
-  }while (checksquare(n) == 0);
+  }while (checksquare(n) == 0);*/
   
    // Allocate memory for matrix M and check for allocation success
   float **M = (float **)malloc(n * sizeof(float *)); 
@@ -249,8 +249,7 @@ srand(time(NULL));
   } 
   
   initializeMatrix(M, n);  
-
-  
+   
 //sequential
 printf("\n_______________________________sequential____________________________\n"); 
   
