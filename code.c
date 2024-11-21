@@ -14,7 +14,7 @@
 #endif
 
 // Variables for storing time
-  double wstart,wend; 
+  double wstart,wend;
 
 //inizializate the matrix
 void initializeMatrix(float **mat, int _n) {  
@@ -82,7 +82,7 @@ float **matTranspose(float **mat, int _n) {
 }
 
 //control if the matrix is symmetric
-#pragma GCC optimize ("O2")
+#pragma GCC optimized ("O2")
 int  checkSymImp(float **mat, int _n) {
 
   #pragma simd
@@ -133,7 +133,6 @@ float **matTransposeImp(float **mat, int _n) {
 
 //control if the matrix is symmetric with OPENMP 
 int  checkSymOMP(float **mat, int _n) {
-
   int is_symmetric = 1;
   int i, j; 
   
@@ -145,7 +144,7 @@ int  checkSymOMP(float **mat, int _n) {
                 is_symmetric = 0;
             }
         }
-    } 
+    }    
     #endif
 
   return is_symmetric; 		
@@ -157,12 +156,13 @@ float **matTransposeOMP(float **mat, int _n) {
   #ifdef _OPENMP
     wt1 = omp_get_wtime();
   #endif 
-   
+  
   // Allocate memory for the transposed matrix
   float **temp = (float **)malloc(_n * sizeof(float *)); 
   for (int i = 0; i < _n; i++) {
     temp[i] = (float *)malloc(_n * sizeof(float));
   }
+        
   #ifdef _OPENMP
   // Parallelize the matrix transpose
   #pragma omp parallel for collapse(2) 
@@ -194,10 +194,9 @@ int checksquare(int num) {
 
   if (num == 0) {
   return 0; }
-  
   while (num%2 == 0) {
   num= num/2;} 
-  
+ //if n = 1 return 1 (true), in the other case (n != 1) return 0 (false) 
   return (num==1); 
 }
 
@@ -209,12 +208,14 @@ void checktraspose(float **SEQ, float **B, int _n) {
   for (int i = 0; i < _n; i++) {
  	  for(int j = 0; j < _n; j++ ) {
   		if (SEQ[i][j] != B[i][j]){
+                        //the other code is not equal to the sequential one, so the comparation is false
   			check = 0;  
   		} 
   	}
   }
   
   if (check == 1) {
+          //the other code is equal to the sequential one (true = 1) 
     printf("\nequal\n"); 
   } else {
     printf("\nnot equal\n"); 
@@ -224,14 +225,15 @@ void checktraspose(float **SEQ, float **B, int _n) {
   
 int main(int argc, char** argv){
   
-/*Initialize the random number generator with the current time to 
-  have different random sequences on each program execution */  
-srand(time(NULL)); 
+  /*Initialize the random number generator with the current time to 
+  have different random sequences on each program execution */
+  srand(time(NULL)); 
   
   int n = atoi(argv[1]); 
+//create 3 different matrix for the traspose because I have to check if the traspose is equal in every method
   float **TSEQ, **TIMP, **TOMP; 
   	
-  /*Input and check for matrix dimension
+  /* Input and check for matrix dimension
   do {
   printf("insert number: ");
   scanf("%d", &n);
@@ -249,7 +251,10 @@ srand(time(NULL));
   } 
   
   initializeMatrix(M, n);  
-   
+  
+  printf("\n%d\n", n); 
+
+  
 //sequential
 printf("\n_______________________________sequential____________________________\n"); 
   
@@ -270,7 +275,7 @@ printf("\n_______________________________sequential____________________________\
   // End time
   wend = omp_get_wtime();
       
-  printf("Execution times of the checksym routine: %12.4g seconds\n", wend - wstart); 
+  //printf("Execution times of the checksym routine: %12.4g seconds\n", wend - wstart); 
   
   TSEQ = matTranspose(M, n);
  
@@ -298,7 +303,7 @@ printf("\n___________________implicit parallelization (SIMD)___________________\
   // End time
   wend = omp_get_wtime(); 
     
-  printf("Execution times of the checksym routine: %12.4g seconds\n", wend - wstart);
+  //printf("Execution times of the checksym routine: %12.4g seconds\n", wend - wstart);
   
   TIMP = matTransposeImp(M, n);
   
@@ -332,9 +337,9 @@ printf("\n___________________explicit parallelizarion (OPENMP)__________________
     wt2 = omp_get_wtime();
     #endif
     
-    #ifdef _OPENMP
+    /*#ifdef _OPENMP
     printf("Execution times of the checksym routine: %f seconds\n", wt2 - wt1);
-    #endif 
+    #endif */
   
     TOMP = matTransposeOMP(M, n);  
     
