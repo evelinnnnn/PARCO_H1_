@@ -1,4 +1,4 @@
-# **Homework 1: Exploring Implicit and ExplicitParallelism with OpenMP** <br>
+# **Homework 1: Exploring Implicit and Explicit Parallelism with OpenMP** <br>
 ### Evelin Begher - 235188 - evelin.begher@studenti.unitn.it <br>
 
 I wrote the code in C, and to simplify the execution process, I created a [PBS script](code.pbs) that allows me to run all the necessary instructions in a single step.
