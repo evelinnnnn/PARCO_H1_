@@ -13,4 +13,6 @@ These two modes are implemented in my [code](code.c) and executed accordingly. I
 The assignment requires us to implement the function **checkSym** and the function **matTranspose** using three different methods: sequential implementation, implicit parallelization, and explicit parallelization using OpenMP. The goal of this assignment is to measure the time taken to perform both the symmetry check and the transpose operation using these three approaches, and to explore how we can optimize performance, especially when working with large datasets or complex calculations.
 
 <br> <br> SPIEGARE PERCHE' HO FATTO ANDARE IL CODICE COSI' TANTE VOLTE <br> <br>
+<br> <br> SPIEGARE LA DIFFERENZA CHE C'E' TRA FARLO ANDARE CON IL PBS (SENZA AGGIUNGERE NULLA NELLA SEZIONE PER FURLO RUNNARE) E FARLO DIRETTAMMNETE DAL TERMINALE <br> <br>
+
 
