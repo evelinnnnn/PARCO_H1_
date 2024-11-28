@@ -210,7 +210,7 @@ int checkSym(float **mat, int _n) {
   printf("Execution times of the checksym routine: %12.4g seconds\n", avg_time_sequential_cs);
   
   bandwidth = ((2 * (_n *_n) * sizeof(float))/avg_time_sequential_cs)/ 1e9;
-  printf("Execution times of the bandwidth: %.3g seconds\n", bandwidth);
+  printf("Execution times of the bandwidth: %.3g G/s\n", bandwidth);
   
   return is_symmetric; 		
 }
@@ -252,7 +252,7 @@ float **matTranspose(float **mat, int _n) {
   printf("Execution times of the transposition routine check: %f seconds\n", avg_time_sequential);
   
   bandwidth = ((2 * (_n *_n) * sizeof(float))/avg_time_sequential)/ 1e9;
-  printf("Execution times of the bandwidth: %.3g seconds\n", bandwidth);
+  printf("Execution times of the bandwidth: %.3g G/s\n", bandwidth);
 
   return temp;
   
@@ -296,7 +296,7 @@ int  checkSymImp(float **mat, int _n) {
   printf("Execution times of the checksym routine: %12.4g seconds\n", avg_time_implicit_cs);
   
   bandwidth = ((2 * (_n *_n) * sizeof(float))/avg_time_implicit_cs)/ 1e9;
-  printf("Execution times of the bandwidth: %.3g seconds\n", bandwidth);
+  printf("Execution times of the bandwidth: %.3g G/s\n", bandwidth);
   
   return is_symmetric;		
 }
@@ -339,7 +339,7 @@ float **matTransposeImp(float **mat, int _n) {
   printf("Execution times of the transposition routine check: %f seconds\n", avg_time_implicit);
   
   bandwidth = ((2 * (_n *_n) * sizeof(float))/avg_time_implicit)/ 1e9;
-  printf("Execution times of the bandwidth: %.3g seconds\n", bandwidth);
+  printf("Execution times of the bandwidth: %.3g G/s\n", bandwidth);
    
   return temp; 
   
