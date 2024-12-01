@@ -21,15 +21,14 @@ Here there are the steps to follow to run my code:
 
     * Establish a secure VPN connection to the University of Trento network.
     * Open your SSH client and connect to the cluster
-      
-+ Enter your university login credentials 
-Upload the Files: Once connected, navigate to your desired directory on the cluster or create a new one. Use the file transfer feature in your SSH client (e.g., drag-and-drop in MobaXterm, or scp for Linux/macOS) to upload the [MATRIX_TRANSPOSE_ H1_PBS](matrix_transpose_H1.pbs) and[MATRIX_TRANSPOSE_ H1.C](matrix_transpose_H1.c) to that directory.
 
-Request an Interactive Session and Reserve a Node:
+*  Enter your university login credentials 
+      * Upload the Files: Once connected, navigate to your desired directory on the cluster or create a new one. Use the file transfer feature in your SSH client to upload the [MATRIX_TRANSPOSE_ H1_PBS](matrix_transpose_H1.pbs) and[MATRIX_TRANSPOSE_ H1.C](matrix_transpose_H1.c) to that directory.
 
-*  Navigate to the directory where the files are located: cd ./directory
-* Request an interactive session on a compute node with the desired specifications (64 cores, 64 OpenMP threads, and 1 MB of memory) using the following command: qsub -I matrix_transpose_H1.pbs
-* Check the Results: Once the job completes, you can find the results in a file named job.o in the same directory where the job was submitted.
+* Request an Interactive Session and Reserve a Node:
+      * Navigate to the directory where the files are located: cd ./directory
+      * Request an interactive session on a compute node with the desired specifications (64 cores, 64 OpenMP threads, and 1 MB of memory) using the following command: qsub -I matrix_transpose_H1.pbs
+      * Check the Results: Once the job completes, you can find the results in a file named job.o in the same directory where the job was submitted.
 
 
 
