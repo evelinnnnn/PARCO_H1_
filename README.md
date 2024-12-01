@@ -15,11 +15,11 @@ The assignment requires us to implement the function **checkSym** and the functi
 
 ### Here there are the steps to follow to run my code: 
 
-* Obtain the [MATRIX_TRANSPOSE_ H1_PBS](matrix_transpose_H1.pbs) and [MATRIX_TRANSPOSE_ H1.C](matrix_transpose_H1.c) files. These will be used for the job submission and running the program.
+* Procure the [MATRIX_TRANSPOSE_ H1_PBS](matrix_transpose_H1.pbs) and [MATRIX_TRANSPOSE_ H1.C](matrix_transpose_H1.c) files. These will be used for the job submission and running the program.
 
 * Connect to the HPC Cluster:
 
-    * Establish a secure VPN connection to the University of Trento network.
+    * Set up a secure VPN connection to the University of Trento network.
     * Open your SSH client and connect to the cluster
 
 *  Enter your university login credentials 
@@ -27,7 +27,7 @@ The assignment requires us to implement the function **checkSym** and the functi
 
 * Request an Interactive Session and Reserve a Node:
      * Navigate to the directory where the files are located: cd ./directory
-     * Request an interactive session on a compute node with the desired specifications (ncpus=64:ompthreads=64:mem=1mb) using the following command: qsub -I matrix_transpose_H1.pbs
+     * Request an interactive session on a compute node with the desired specifications (ncpus=64:ompthreads=64:mem=1mb) using the following command: qsub matrix_transpose_H1.pbs
      * Once the job completes, you can find the results in a file named job.o in the same directory where the job was submitted.
 
 
