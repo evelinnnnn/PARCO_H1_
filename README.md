@@ -29,7 +29,7 @@ Request an Interactive Session and Reserve a Node:
 
 *  Navigate to the directory where the files are located: cd ./directory
 * Request an interactive session on a compute node with the desired specifications (64 cores, 64 OpenMP threads, and 1 MB of memory) using the following command: qsub -I matrix_transpose_H1.pbs
-* Check the Results: Once the job completes, you can find the results in a file named  in the same directory where the job was submitted.
+* Check the Results: Once the job completes, you can find the results in a file named job.o in the same directory where the job was submitted.
 
 
 
